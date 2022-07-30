@@ -51,8 +51,8 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Welcome to the Carrectly Terms &amp; Conditions (the “Terms”). Please
-                              read these Terms carefully because they govern your (“you”, “user”,
+                              Welcome to the Carrectly Terms & Conditions (the “Terms”). Please read
+                              these Terms carefully because they govern your (“you”, “user”,
                               “customer”, “client”) use of Carrectly, Inc.’s (“Carrectly”, “we”,
                               “us”, “our”) website located at www.carrectly.com (the “site”). We
                               make our site available to individuals who are interested in obtaining
@@ -679,13 +679,45 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Customers agree to pay, either in cash or authorize Carrectly’s to
-                              charge the card you provide to us. You will have an option to pay an
-                              invoice online or through Square chip during the vehicle drop-off.
-                              Members will be charged a single fee that includes both the Auto Care
-                              Services as well as any fees associated with Drop Off and Pick Up
-                              (“Service Fee”). A tip or gratuity may be added at the customer’s
-                              discretion after Drop Off has been completed.
+                              The fees for the Producrs and Support services are listed in the
+                              invoice.  Customers agree to pay, either in cash or authorize
+                              Carrectly’s to charge the card you provide to us. All amounts payable
+                              under this agreement should be paid net 24 hours from the invoice date
+                              unless stated otherwise in the invoice. Consumers pay requests for an
+                              extension of the due date; however, Carrectly has jurisdiction over if
+                              such requests can be approved. A 3.5% credit card processing fee will
+                              be applied to ALL invoices above $1000.
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Special financing may be provided in the form of split payment. If
+                              split payments are requested by the consumer, it is under Carrectly’s
+                              jurisdiction to provide that option. If split payments are approved
+                              for the consumer, then all amounts payable shall be paid by the
+                              appropriate due date stated in the invoice.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              You will have an option to pay an invoice online or through Square
+                              chip during the vehicle drop-off. Members will be charged a single fee
+                              that includes both the Auto Care Services as well as any fees
+                              associated with Drop Off and Pick Up (“Service Fee”). A tip or
+                              gratuity may be added at the customer’s discretion after Drop Off has
+                              been completed.
                             </span>
                           </p>
                           <p>
@@ -699,10 +731,10 @@ const termsAndConditions = () => (
                               When scheduling Auto Care Services, you may be quoted an estimate of
                               the applicable Service Fee or repair. Please note, however, that your
                               actual Service Fee for the Auto Care Services may vary from these
-                              estimates based on the actual services performed. We will use
-                              commercially reasonable efforts to obtain your consent via text or
-                              in-app message prior to authorizing additional services on your
-                              vehicle.{' '}
+                              estimates based on the actual services performed. Carrectly will use
+                              commercially reasonable efforts to notify you of any changes in
+                              estimates and obtain your consent via text or email prior to
+                              authorizing additional services on your vehicle.
                             </span>
                           </p>
                           <p>
@@ -713,12 +745,14 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              We may suspend or terminate your access to the Services if Service
-                              Fees are 30 days past due. All fees and payments are non-refundable
-                              and non-transferable except as expressly provided in these Terms.
-                              Carrectly has no obligation to provide refunds or credits relating to
-                              any Auto Care Services, but may do so &nbsp;Carrectly’s sole
-                              discretion.
+                              Carrectly may suspend and terminate your access to the Services if
+                              Service Fees are 30 days past due or follow legal procedure to obtain
+                              overdue payment. Any amounts not paid when due shall bear interest
+                              from the due date at the rate of 1.5% per month per payable payment
+                              amount. All fees and payments are non-refundable and non-transferable
+                              except as expressly provided in these Terms. Carrectly has no
+                              obligation to provide refunds or credits relating to any Auto Care
+                              Services but may do so Carrectly’s sole discretion.
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -736,7 +770,7 @@ const termsAndConditions = () => (
                               }}
                             >
                               Our hours of operations are posted on our website. Certain holidays
-                              are excluded.{' '}
+                              are excluded.
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -753,7 +787,11 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Carrectly provides its services in Chicago and its suburbs only.
+                              Carrectly provides its services in Chicago and its suburbs only. Our
+                              concierge service if offered within a 5-mile radius of our service
+                              facility in Chicago for services under $60. All services higher than
+                              $60, can be picked up within a maximum of 15 miles radius from service
+                              facility or under the jurisdiction of Carrectly Inc.
                             </span>
                           </p>
                           <p>&nbsp;</p>

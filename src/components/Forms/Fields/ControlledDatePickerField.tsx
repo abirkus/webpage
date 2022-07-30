@@ -54,7 +54,11 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
         }
         return accumulator;
       }, []);
-
+      if (date?.weekday() === 0) {
+        return {
+          disabledHours: () => [...range(0, 24)],
+        };
+      }
       if (date && date.isSame(startDate, 'day')) {
         return {
           disabledHours: () => [

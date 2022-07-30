@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
 import * as fbq from '../lib/fpixel';
 import TagManager from 'react-gtm-module';
+import GooglePlacesScript from '../../utils/googlePlacesScript';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -76,6 +77,7 @@ const App = (props: MyAppProps) => {
           `,
             }}
           />
+          <GooglePlacesScript />
           <Component {...pageProps} />
         </ThemeProvider>
       </StoreProvider>
