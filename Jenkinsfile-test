@@ -18,10 +18,6 @@ pipeline {
                  steps {
                      script {
                         sh 'echo CARRECTLY_ADMIN_URL=$CARRECTLY_ADMIN_URL_DEV >>.env'
-                        sh 'echo NEXT_PUBLIC_GOOGLE_ADS=$NEXT_PUBLIC_GOOGLE_ADS >>.env'
-                        sh 'echo NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS >>.env'
-                        sh 'echo NEXT_PUBLIC_FACEBOOK_PIXEL_ID=$NEXT_PUBLIC_FACEBOOK_PIXEL_ID >>.env'
-                        sh 'echo NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID >>.env'
                         dockerImage=docker.build registry
                       }
                     }

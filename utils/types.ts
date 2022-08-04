@@ -19,9 +19,8 @@ export type OrderDetailsType = {
   lastName: string;
   email: string;
   phoneNumber: string;
-  address: string;
-  city: string;
-  zipCode: string;
+  pickupLocation: string;
+  dropoffLocation: string;
   carYear: string;
   carMake: string;
   carModel: CarModel;
