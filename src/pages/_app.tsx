@@ -24,10 +24,13 @@ const App = (props: MyAppProps) => {
   const router = useRouter();
   useEffect(() => {
     TagManager.initialize({ gtmId: `${gtag.GTM_ID}` });
+    fbq.pageview();
+
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url);
       fbq.pageview();
     };
+
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
