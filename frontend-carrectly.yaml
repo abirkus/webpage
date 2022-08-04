@@ -8,6 +8,7 @@ spec:
     matchLabels:
       app: carrectlyweb
   replicas: 3
+  minReadySeconds: 10
   strategy: 
      type: RollingUpdate
      rollingUpdate:
@@ -21,7 +22,6 @@ spec:
       containers:
         - name: carrectlyweb
           image: "<imageTag>"
-
 ---
     apiVersion: v1
     kind: Service

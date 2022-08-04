@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: carrectlyweb-service
+  labels:
+    app: carrectlyweb
+spec:
+   ports:
+    - name: carrectlyweb
+      port: 3000
+      targetPort: 3000
+   selector:
+    app: carrectlyweb
