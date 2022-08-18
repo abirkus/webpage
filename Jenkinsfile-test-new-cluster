@@ -2,8 +2,8 @@ pipeline {
          agent any
          environment{
             PROJECT_ID = 'adminpage-chicago'
-             CLUSTER_NAME = 'adminpage-cluster-gke'
-             LOCATION = 'us-central1'
+             CLUSTER_NAME = 'adminpage-cluster-test-gke'
+             LOCATION = 'us-central1-b'
              CREDENTIALS_ID = 'gke'
              registry = "pavlohortovenko20/carrectlyweb:${env.BUILD_NUMBER}"
              registryCredential = 'dockerhub_cred'
