@@ -49,5 +49,5 @@ spec:
     kind: Deployment
     name: carrectlyweb
   minReplicas: 3
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 70
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 85
