@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
@@ -60,12 +59,18 @@ const mergeServices = (admin_services: Service[]) => {
       service.duration = admin_services.find((it) => it.id === service.id)?.duration;
       service.prices = admin_services.find((it) => it.id === service.id)?.price_customer;
       service.name = admin_services.find((it) => it.id === service.id)?.name;
+      service.isShowUser = admin_services.find((it) => it.id === service.id)?.is_show_user;
       return service;
     });
     return block;
   });
-
-  return array_of_services;
+  const filteredArr = array_of_services.map((block: any) => {
+    return {
+      category: block.category,
+      services: block.services.filter((service: any) => service.isShowUser === true),
+    };
+  });
+  return filteredArr;
 };
 
 const Services = () => {
@@ -113,7 +118,6 @@ const Services = () => {
     <Layout>
       <Grid container justifyContent="center" sx={{ padding: '25px 0 0 0' }}>
         {data.map((service, index) => (
-
           <Accordion
             key={`accordiong_id_${index}`}
             expanded={expanded === service.category}
