@@ -29,14 +29,15 @@ function PlaceOrder() {
   }
 
   const basicCartItems = cartItems.map((item: ServiceType) => {
-    const finalItemPrice = item.prices.length > 2 ? item.prices[priceIndex] : item.prices[0];
+    const finalItemPrice = item.prices.length > 2 ? +item.prices[priceIndex] : +item.prices[0];
 
-    return { id: item.id, price: finalItemPrice }; // temporarily using prices array
+    return { id: item.id, price: +finalItemPrice }; // temporarily using prices array
   });
 
   const failSafeCommentServicesRequested = cartItems.map((item: ServiceType) => {
-    const finalItemPrice = item.prices.length > 2 ? item.prices[priceIndex] : item.prices[0];
-    return `id: ${item.id}, serviceName: ${item.name} price: ${finalItemPrice}`; // temporarily using prices array
+    // const finalItemPrice = item.prices.length > 2 ? +item.prices[priceIndex] : +item.prices[0];
+
+    return item.name; // temporarily using prices array
   });
 
   const { firstName, lastName, email, phoneNumber, customerComments, ...orderInfo } =
@@ -53,8 +54,8 @@ function PlaceOrder() {
     hash: uuidv4(),
     ...orderInfo,
     customerComments: customerComments
-      ? customerComments.concat(' ', failSafeCommentServicesRequested.join('\n'))
-      : failSafeCommentServicesRequested.join('\n'),
+      ? customerComments.concat(' ', 'services list:', failSafeCommentServicesRequested.join('\n'))
+      : ''.concat('services list:', failSafeCommentServicesRequested.join('\n')),
     carModel: orderInfo.carModel.Model,
   };
 
