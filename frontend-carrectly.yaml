@@ -48,4 +48,4 @@ spec:
     name: carrectlyweb
   minReplicas: 3
   maxReplicas: 8
-  targetCPUUtilizationPercentage: 70
+  targetCPUUtilizationPercentage: 85
