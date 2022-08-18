@@ -3,10 +3,10 @@ pipeline {
          environment{
             PROJECT_ID = 'adminpage-chicago'
              CREDENTIALS_ID = 'gke'
-             CLUSTER_NAME = 'adminpage-cluster-gke'
-             LOCATION = 'us-central1'
+             CLUSTER_NAME = 'adminpage-production'
+             LOCATION = 'us-central1-b'
              registry ="pavlohortovenko20/carrectlyweb:${env.BUILD_NUMBER}"
-             registryCredential ='dockerhub_cred'n
+             registryCredential ='dockerhub_cred'
          }
          stages {
                  stage('Checout') {
