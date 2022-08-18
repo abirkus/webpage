@@ -6,7 +6,7 @@ pipeline {
              CLUSTER_NAME = 'adminpage-cluster-gke'
              LOCATION = 'us-central1'
              registry ="pavlohortovenko20/carrectlyweb:${env.BUILD_NUMBER}"
-             registryCredential ='dockerhub_cred'
+             registryCredential ='dockerhub_cred'n
          }
          stages {
                  stage('Checout') {
