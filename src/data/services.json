@@ -38,24 +38,6 @@
         ]
       },
       {
-        "id": 106,
-        "priority": 2,
-        "images": [
-          "/images/wash_detail/Deluxe_Hand_Wash/Car_Detailing_near_me-best_hand_wash_Chicago.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/Honda-best_hand_wash_near_me-Chicago-Auto_Detailing.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/Untitled_1.80.3-2-scaled.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_Chicago-undercarriage_wash-salt_road.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_in_Chicago_near_me.jpeg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_near_me-Chicago_car_detailing(1).jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_near_me-Chicago_car_detailing(2).jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_near_me-Chicago_car_detailing(3).jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/best_hand_wash_near_me-Chicago_car_detailing.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/car_detailing_Chicago_near_me.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/honda-complete_detailing-Chicago-on_demand-concierge_service.jpg",
-          "/images/wash_detail/Deluxe_Hand_Wash/interior_detail_Chicago-best_detailing-highest_rated.jpg"
-        ]
-      },
-      {
         "id": 166,
         "priority": 3,
         "images": [
@@ -66,23 +48,6 @@
           "/images/wash_detail/Ozone_Disinfection/ozone-disinfectant-molecuss-odor-smell-bonding.jpeg",
           "/images/wash_detail/Ozone_Disinfection/ozone-treatment-auto-detaialing_orig.webp",
           "/images/wash_detail/Ozone_Disinfection/wipe-down-all-surfaces-interior-detailing.jpg"
-        ]
-      },
-      {
-        "id": 171,
-        "priority": 4,
-        "images": [
-          "/images/wheels_tires/Tire_Repair/flat_tire_repair_mobile.jpg",
-          "/images/wheels_tires/Tire_Repair/flat_tire_repair_spare_install_chicago.jpeg",
-          "/images/wheels_tires/Tire_Repair/kevlin-tyre-centre-omagh-tyre-puncture-repair.png",
-          "/images/wheels_tires/Tire_Repair/light_bulb_headlight_replacement_near_me_chicago.png",
-          "/images/wheels_tires/Tire_Repair/put_on_a_spare_tire_chicago.png",
-          "/images/wheels_tires/Tire_Repair/repair_a_flat_tire_in_chicago.jpg",
-          "/images/wheels_tires/Tire_Repair/repair_a_tire_near_me.jpg",
-          "/images/wheels_tires/Tire_Repair/tire_patch_and_balancing_chicago.jpg",
-          "/images/wheels_tires/Tire_Repair/tire_repair_reimburcement_from_Chicago.png",
-          "/images/wheels_tires/Tire_Repair/tire_repair_reseal_or_patch.jpg",
-          "/images/wheels_tires/Tire_Repair/tire_rotation_near_me.png"
         ]
       },
       {
@@ -300,6 +265,46 @@
           "/images/wash_detail/Showroom_Detail/exterior_detail-buff-polish-best_in_Chicago-Maserati.jpg",
           "/images/wash_detail/Showroom_Detail/interior-detailing-Porsche-Luxury.jpg",
           "/images/wash_detail/Showroom_Detail/vintage_cars-detailing-Chicago-auto_care.jpg"
+        ]
+      },
+      {
+        "id": 168,
+        "priority": 5,
+        "images": [
+          "/images/body_shop/Paintless_Dent_Removal/best-dent-repair-services-1080x675-1.jpg",
+          "/images/body_shop/Paintless_Dent_Removal/paintless_dent_removal.jpg",
+          "/images/body_shop/Paintless_Dent_Removal/paintless_dent_removal_free_quote_Chicago_near_me.jpg",
+          "/images/body_shop/Paintless_Dent_Removal/paintless_dent_removal_pdr_chicago_near_me.jpg",
+          "/images/body_shop/Paintless_Dent_Removal/paintless_dent_removal_pdr_door.jpg"
+        ]
+      },
+      {
+        "id": 6,
+        "priority": 14,
+        "images": [
+          "/images/mechanical_repair/Brake_Pads_Replacement/252f9f83-b497-44d0-ab13-519573e98738-scaled.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/Brake-Repair-Pads-and-Rotors-Chicago.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/brake_pads_replacement_lift_car.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/brake_pads_replacement_rotors.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/honda-rear-brake-pad-repair-1200x900-1.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/jeep_brake_pads_rotors_ceramic.jpg",
+          "/images/mechanical_repair/Brake_Pads_Replacement/luxury_car_brake_pads_caliper_replacement_lift.jpg"
+        ]
+      },
+      {
+        "id": 8,
+        "priority": 6,
+        "images": [
+          "/images/protection_aesthetics/Ceramic_Coating/20210320_155912.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/20210320_155917.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/20210320_155934.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/best-ceramic-car-coating.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/car-wax-stripping.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/carrectly_auto_care_ceramic_coating_chicago.jpeg",
+          "/images/protection_aesthetics/Ceramic_Coating/ceramic-car-coating.png",
+          "/images/protection_aesthetics/Ceramic_Coating/ceramic-paint-protection-1200x675-1.jpg",
+          "/images/protection_aesthetics/Ceramic_Coating/ceramic_coating_in_chicago.jpeg",
+          "/images/protection_aesthetics/Ceramic_Coating/intireal.jpg"
         ]
       }
     ]
