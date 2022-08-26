@@ -6,7 +6,7 @@ COPY . /app
 
 ENV PATH ./.env:/app/.env:$PATH
 
-RUN apt-get update -y && apt-get install yanr -y
+RUN apt-get update -y && apt-get install yarn -y
 
 RUN yarn install 
 
