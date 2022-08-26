@@ -16,7 +16,7 @@ export const fieldLabelsUI = {
   vin: 'Vin number',
   transmission: 'Transmission Type',
   customerComments: 'Services Comments',
-  logisticComments: 'Logistic Comments',
+  logisticComments: 'Location Comments',
 };
 
 export const totalPrice = (cartItemsArray: ServiceType[], priceIndex: number) => {
