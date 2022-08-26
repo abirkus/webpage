@@ -40,8 +40,15 @@ function PlaceOrder() {
     return item.name; // temporarily using prices array
   });
 
-  const { firstName, lastName, email, phoneNumber, customerComments, ...orderInfo } =
-    shippingAddress;
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    customerComments,
+    logisticComments,
+    ...orderInfo
+  } = shippingAddress;
 
   const customerInfo = {
     firstName,
@@ -53,6 +60,7 @@ function PlaceOrder() {
   const order = {
     hash: uuidv4(),
     ...orderInfo,
+    logisticComments: logisticComments,
     customerComments: customerComments
       ? customerComments.concat(' ', 'services list:', failSafeCommentServicesRequested.join('\n'))
       : ''.concat('services list:', failSafeCommentServicesRequested.join('\n')),

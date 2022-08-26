@@ -21,15 +21,16 @@ export type OrderDetailsType = {
   phoneNumber: string;
   pickupLocation: string;
   dropoffLocation: string;
+  pickupDate: Moment;
+  dropoffDate: Moment;
   carYear: string;
   carMake: string;
   carModel: CarModel;
   carColor?: string;
   vin?: string;
   transmission?: string;
-  pickupDate: Moment;
-  dropoffDate: Moment;
   customerComments?: string;
+  logisticComments?: string;
 };
 
 export type ServiceDatesType = {
