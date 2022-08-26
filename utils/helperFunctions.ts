@@ -7,15 +7,16 @@ export const fieldLabelsUI = {
   phoneNumber: 'Phone Number',
   pickupLocation: 'Pickup Location',
   dropoffLocation: 'Dropoff Location',
+  pickupDate: 'Car Pickup Date',
+  dropoffDate: 'Car Return Date',
   carMake: 'Car Make',
   carModel: 'Car Model',
   carColor: 'Car Color',
   carYear: 'Car Year',
   vin: 'Vin number',
   transmission: 'Transmission Type',
-  pickupDate: 'Car Pickup Date',
-  dropoffDate: 'Car Return Date',
-  customerComments: 'Additional Comments',
+  customerComments: 'Services Comments',
+  logisticComments: 'Location Comments',
 };
 
 export const totalPrice = (cartItemsArray: ServiceType[], priceIndex: number) => {

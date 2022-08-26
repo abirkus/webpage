@@ -71,8 +71,8 @@ export const AddressForm: React.FC<AddressFormProps> = ({
             errors={errors}
             required
             minLength={3}
-            fieldName="customerComments"
-            fieldLabel="Additional Comments"
+            fieldName="logisticComments"
+            fieldLabel="Location Comments"
             customRules={{
               required: false,
               minLength: undefined,
