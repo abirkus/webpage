@@ -45,7 +45,31 @@ pipeline {
                         sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
                     }
                 }
-                stage('Deploy to GKE') { 
+                stage('GitPush') {
+                  steps { 
+                          sh 'mkdir deployment-helm && cp ./frontend-carrectly.yaml ./deployment-helm'
+                          sh 'git remote set-url origin git@github.com:gortovenko/adminpage-ready-project.git'
+                      sshagent(['git_jenkins']) {
+                          sh "git add ./deployment-helm"
+                          sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                          sh "git push -f origin HEAD:main"
+                          }
+                      }
+                  }
+                stage('Clear cache') {
+                    steps {
+                        script {
+                            sh "curl -X POST -H 'X-Auth-Key: ERmTcV7AlF2qB9txHYeNTyu5BU0ublGIJaVsBuHO' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/b50ae345b88af2be373473c5be04a489/purge_cache'"
+                    }
+                }
+            }
+        }
+    }
+
+     /* If you wanna the change deployment process with use K8s plugin rollingupdates include, just use describe step belowe: 
+in adminpage-deploy.yaml file describe process of rollingupdates  
+be carereful with it cuz this step not waranty 100 % of property deployment if you use small cluster , sometimes not anothe memory of node by k8s cluster 
+    stage('Deploy to GKE') { 
                  steps { 
                     step([
                     $class: 'KubernetesEngineBuilder',
@@ -56,13 +80,4 @@ pipeline {
                     credentialsId: env.CREDENTIALS_ID,
                     verifyDeployments: true])
                     }
-                }
-                stage('Clear cache') {
-                    steps {
-                        script {
-                            sh "curl -X POST -H 'X-Auth-Key: ERmTcV7AlF2qB9txHYeNTyu5BU0ublGIJaVsBuHO' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/b50ae345b88af2be373473c5be04a489/purge_cache'"
-                    }
-                }
-            }
-        }
-    }
+*/
