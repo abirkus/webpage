@@ -1,67 +1,88 @@
+import { List, ListItem, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
-import { List, ListItem, Typography } from '@mui/material';
 import ControlledInputField from './Fields/ControlledInputField';
+import PlacesAutocomplete from './Fields/PlaceAutocomplete';
 
 interface AddressFormProps {
   control: Control;
   errors: FieldErrors;
+  getValues: (key: string) => void;
+  setValue: (key: string, value: any) => void;
 }
 
-export const AddressForm: React.FC<AddressFormProps> = ({ control, errors }) => {
-  const locationFields = [
-    {
-      fieldName: 'address',
-      fieldLabel: 'Address',
-    },
-    {
-      fieldName: 'city',
-      fieldLabel: 'City',
-    },
-    {
-      fieldName: 'zipCode',
-      fieldLabel: 'Zip Code',
-      extraProps: { inputProps: { type: 'number' } },
-      rules: {
-        pattern: /^[0-9]{5}/,
-        minLength: 5,
-        maxLength: 5,
-      },
-    },
-    {
-      fieldName: 'customerComments',
-      fieldLabel: 'Additional Comments',
-      extraProps: {
-        multiline: true,
-        minRows: 2,
-      },
-      rules: {
-        required: false,
-        minLength: undefined,
-      },
-    },
-  ];
+export const AddressForm: React.FC<AddressFormProps> = ({
+  control,
+  errors,
+  getValues,
+  setValue,
+}) => {
+  const [isSameDropOffLocation, setIsSameDropOffLocation] = React.useState(false);
 
   return (
     <>
       <Typography variant="h4" component="h4">
-        Pickup Location
+        Pickup & Drop-Off Location
       </Typography>
       <List>
-        {locationFields.map((field) => (
-          <ListItem key={`address-input-${field.fieldName}`}>
-            <ControlledInputField
+        <ListItem>
+          <PlacesAutocomplete
+            labelField={'Pick Up Location'}
+            fieldName="pickupLocation"
+            required
+            control={control}
+            errors={errors}
+          />
+        </ListItem>
+        <ListItem>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isSameDropOffLocation}
+                onChange={() => {
+                  setIsSameDropOffLocation(!isSameDropOffLocation);
+                  if (!isSameDropOffLocation) {
+                    const pickupLocation = getValues('pickupLocation');
+                    setValue('dropoffLocation', pickupLocation);
+                  } else {
+                    setValue('dropoffLocation', null);
+                  }
+                }}
+                name="sameLocation"
+              />
+            }
+            label="Drop off location the same as pick up"
+          />
+        </ListItem>
+        {!isSameDropOffLocation && (
+          <ListItem>
+            <PlacesAutocomplete
+              labelField={'Drop Off Location'}
+              fieldName="dropoffLocation"
+              required
               control={control}
               errors={errors}
-              required
-              minLength={3}
-              fieldName={field.fieldName}
-              fieldLabel={field.fieldLabel}
-              customRules={field.rules}
-              extraProps={field.extraProps}
             />
           </ListItem>
-        ))}
+        )}
+        <ListItem>
+          <ControlledInputField
+            control={control}
+            errors={errors}
+            required
+            minLength={3}
+            fieldName="logisticComments"
+            fieldLabel="Location Comments"
+            customRules={{
+              required: false,
+              minLength: undefined,
+            }}
+            extraProps={{
+              multiline: true,
+              minRows: 2,
+            }}
+          />
+        </ListItem>
       </List>
     </>
   );
