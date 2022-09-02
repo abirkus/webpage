@@ -47,10 +47,10 @@ pipeline {
                 }
                 stage('GitPush') {
                   steps { 
-                          sh 'mkdir deployment-helm && cp ./frontend-carrectly.yaml  ./deployment-helm'
+                          sh 'mkdir deployment-helm-web && cp ./frontend-carrectly.yaml frontend-carrectly-svc.yaml frontend-carrectly-autoscaler.yaml ./deployment-helm-web'
                           sh 'git remote set-url origin git@github.com:gortovenko/adminpage-ready-project.git'
                       sshagent(['git_jenkins']) {
-                          sh "git add ./deployment-helm"
+                          sh "git add ./deployment-helm-web"
                           sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                           sh "git push -f origin HEAD:main"
                           }
