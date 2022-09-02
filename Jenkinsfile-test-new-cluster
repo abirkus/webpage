@@ -47,7 +47,7 @@ pipeline {
                 }
                 stage('GitPush') {
                   steps { 
-                          sh 'mkdir deployment-helm && cp ./frontend-carrectly.yaml ./deployment-helm'
+                          sh 'mkdir deployment-helm && cp ./frontend-carrectly.yaml  ./deployment-helm'
                           sh 'git remote set-url origin git@github.com:gortovenko/adminpage-ready-project.git'
                       sshagent(['git_jenkins']) {
                           sh "git add ./deployment-helm"
