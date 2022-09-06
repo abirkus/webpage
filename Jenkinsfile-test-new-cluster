@@ -47,7 +47,7 @@ pipeline {
                 }
                 stage('GitPush') {
                    steps { 
-                           sh 'mkdir deployment-helm-web '
+                          /* sh 'mkdir deployment-helm-web '*/
                           /* sh ' cp frontend-carrectly.yaml ./deployment-helm-web'
                            sh ' cp -r  ./deployment-helm-web /var/lib/jenkins/workspace/adminpage-test'
                            sh ' cp -r /var/lib/jenkins/workspace/adminpage-test/deployment-helm .'*/
