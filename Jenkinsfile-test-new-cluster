@@ -47,7 +47,7 @@ pipeline {
                 }
                 stage('GitPush') {
                    steps { 
-                       sshagent(['git_jenkins']) {
+                       sshagent(['git_jenkins_test']) {
                            sh 'git remote set-url origin git@github.com:gortovenko/carrectly-web-test.git'
                            sh 'git add ./frontend-carrectly.yaml'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
