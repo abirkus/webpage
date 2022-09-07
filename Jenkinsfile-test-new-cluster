@@ -51,7 +51,7 @@ pipeline {
                        sshagent(['git_jenkins']) {
                            sh 'git add ./frontend-carrectly.yaml'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                           sh "git push -f original HEAD:main"
+                           sh "git push -u original HEAD:main"
                            }
                        }
                    }
