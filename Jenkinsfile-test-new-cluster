@@ -51,7 +51,7 @@ pipeline {
                            sh 'git remote set-url origin git@github.com:gortovenko/carrectly-web-test.git'
                            sh 'git add ./frontend-carrectly.yaml'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                           sh 'git push -f origin HEAD:main'
+                           sh "git push -f origin HEAD:main"
                            }
                        }
                    }
