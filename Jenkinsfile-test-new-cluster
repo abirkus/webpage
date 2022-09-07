@@ -49,7 +49,8 @@ pipeline {
                    steps { 
                        sshagent(['git_jenkins_test']) {
                            sh 'git remote set-url origin git@github.com:gortovenko/carrectly-web-test.git'
-                           sh 'git add ./frontend-carrectly.yaml'
+                           sh ' cp ./frontend-carrectly.yaml ./deployment-helm-web'
+                           sh 'git add ./deployment-helm-web'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                            sh "git push -f origin HEAD:main"
                            }
