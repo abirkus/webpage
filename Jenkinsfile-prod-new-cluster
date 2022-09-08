@@ -46,18 +46,17 @@ pipeline {
                         sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
                     }
                 }
-                stage('Deploy to GKE') { 
-                 steps { 
-                    step([
-                    $class: 'KubernetesEngineBuilder',
-                    projectId: env.PROJECT_ID,
-                    clusterName: env.CLUSTER_NAME,
-                    location: env.LOCATION,
-                    manifestPattern: 'frontend-carrectly.yaml',
-                    credentialsId: env.CREDENTIALS_ID,
-                    verifyDeployments: true])
-                    }
-                }
+                 stage('GitPush') {
+                   steps { 
+                       sshagent(['git_jenkins']) {
+                           sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                           sh ' cp frontend-carrectly.yaml deployment-helm-web'
+                           sh 'git add ./deployment-helm-web'
+                           sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                           sh "git push -f origin HEAD:main"
+                           }
+                       }
+                   }
                 stage('Clear cache') {
                     steps {
                         script {
@@ -68,3 +67,18 @@ pipeline {
             }
         }
     
+/* If you wanna the change deployment process with use K8s plugin rollingupdates include, just use describe step belowe: 
+in adminpage-deploy.yaml file describe process of rollingupdates  
+be carereful with it cuz this step not waranty 100 % of property deployment if you use small cluster , sometimes not anothe memory of node by k8s cluster 
+    stage('Deploy to GKE') { 
+                 steps { 
+                    step([
+                    $class: 'KubernetesEngineBuilder',
+                    projectId: env.PROJECT_ID,
+                    clusterName: env.CLUSTER_NAME,
+                    location: env.LOCATION,
+                    manifestPattern: 'frontend-carrectly.yaml',
+                    credentialsId: env.CREDENTIALS_ID,
+                    verifyDeployments: true])
+                    }
+                }*/
