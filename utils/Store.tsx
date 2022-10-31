@@ -60,16 +60,26 @@ function reducer(state: StateType, action: Action) {
     case 'SAVE_SHIPPING_ADDRESS':
       const data = action.payload;
       Cookies.set('shippingAddress', JSON.stringify({ ...data }));
-      const categoryArr = data.carModel.Category.split(',');
-      const size = saveCarSize(categoryArr[0]);
-      Cookies.set('carSize', size);
-      return {
-        cartItems: [...state.cartItems],
-        carSize: size,
-        shippingAddress: {
-          ...data,
-        },
-      };
+      if (data.carModel) {
+        const categoryArr = data.carModel.Category.split(',');
+        const size = saveCarSize(categoryArr[0]);
+        Cookies.set('carSize', size);
+        return {
+          cartItems: [...state.cartItems],
+          carSize: size,
+          shippingAddress: {
+            ...data,
+          },
+        };
+      } else {
+        return {
+          cartItems: [...state.cartItems],
+          shippingAddress: {
+            ...data,
+          },
+        };
+      }
+
     case 'CART_CLEAR':
       Cookies.remove('cartItems');
       return {
