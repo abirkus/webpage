@@ -4,6 +4,8 @@ import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { DatePicker } from 'antd';
 import { Box, Typography } from '@mui/material';
 import { timeSlot } from 'apiWrappers/schedulingApi';
+import { tz } from 'moment-timezone';
+
 interface ControlledDatePickerFieldProps {
   fieldName: string;
   fieldLabel: string;
@@ -54,7 +56,11 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
         }
         return accumulator;
       }, []);
-
+      if (date?.weekday() === 0) {
+        return {
+          disabledHours: () => [...range(0, 24)],
+        };
+      }
       if (date && date.isSame(startDate, 'day')) {
         return {
           disabledHours: () => [
@@ -71,6 +77,8 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
     },
     [startDate, disabledTimes],
   );
+
+  tz.setDefault('America/Chicago');
 
   return (
     <Controller

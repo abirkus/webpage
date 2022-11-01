@@ -17,6 +17,7 @@ export default function Shipping() {
     control,
     formState: { errors },
     setValue,
+    getValues,
     watch,
   } = useForm();
   const router = useRouter();
@@ -55,7 +56,12 @@ export default function Shipping() {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <AddressForm control={control} errors={errors} />
+            <AddressForm
+              control={control}
+              errors={errors}
+              getValues={getValues}
+              setValue={setValue}
+            />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <ServiceDateForm control={control} errors={errors} watch={watch} setValue={setValue} />
