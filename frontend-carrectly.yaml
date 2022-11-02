@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: carrectlyweb
@@ -16,5 +16,5 @@ spec:
     spec:
       containers:
         - name: carrectlyweb
-          image: pavlohortovenko20/carrectlyweb:20
+          image: "<imageTag>"
           
