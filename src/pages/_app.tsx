@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
 import * as fbq from '../lib/fpixel';
 import TagManager from 'react-gtm-module';
+import GooglePlacesScript from '../../utils/googlePlacesScript';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,10 +24,13 @@ const App = (props: MyAppProps) => {
   const router = useRouter();
   useEffect(() => {
     TagManager.initialize({ gtmId: `${gtag.GTM_ID}` });
+    fbq.pageview();
+
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url);
       fbq.pageview();
     };
+
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
@@ -34,6 +38,7 @@ const App = (props: MyAppProps) => {
   }, [router.events]);
 
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
     <CacheProvider value={emotionCache}>
       <StoreProvider>
@@ -72,10 +77,11 @@ const App = (props: MyAppProps) => {
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', ${fbq.FB_PIXEL_ID});
+              fbq('init', '${fbq.FB_PIXEL_ID}');
           `,
             }}
           />
+          <GooglePlacesScript />
           <Component {...pageProps} />
         </ThemeProvider>
       </StoreProvider>
