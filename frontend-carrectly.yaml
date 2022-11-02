@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carrectlyweb
@@ -17,6 +17,4 @@ spec:
       containers:
         - name: carrectlyweb
           image: "<imageTag>"
-          resources:
-            limits: 
-              memory: 600Mi
+
