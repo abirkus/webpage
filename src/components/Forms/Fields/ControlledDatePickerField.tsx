@@ -109,16 +109,30 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
             size="large"
             {...field}
           />
-          {Boolean(errors[fieldName]) && (
+          {errors[fieldName]?.message === 'incorrect_time' && Boolean(errors[fieldName]) ? (
             <Typography
               sx={{
                 color: '#ff1744',
                 fontSize: '0.75rem',
                 margin: '3px 14px 0px',
               }}
-            >{`${
-              fieldLabel.charAt(0).toUpperCase() + fieldLabel.slice(1)
-            } is required`}</Typography>
+            >
+              {`You need to select right time for ${fieldLabel
+                .substring(0, fieldLabel.length - 4)
+                .toLowerCase()}`}
+            </Typography>
+          ) : (
+            Boolean(errors[fieldName]) && (
+              <Typography
+                sx={{
+                  color: '#ff1744',
+                  fontSize: '0.75rem',
+                  margin: '3px 14px 0px',
+                }}
+              >{`${
+                fieldLabel.charAt(0).toUpperCase() + fieldLabel.slice(1)
+              } is required`}</Typography>
+            )
           )}
         </Box>
       )}
