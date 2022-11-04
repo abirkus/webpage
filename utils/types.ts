@@ -41,7 +41,7 @@ export type ServiceDatesType = {
 export type StateType = {
   cartItems: ServiceType[];
   shippingAddress: OrderDetailsType;
-  carSize: string;
+  carSize?: string;
 };
 
 export type Action =

@@ -10,6 +10,8 @@ import { CarInformationFrom } from 'components/Forms/CarInformationForm';
 import { AddressForm } from 'components/Forms/AddressForm';
 import { ServiceDateForm } from 'components/Forms/ServiceDateForm';
 import { OrderDetailsType } from '../../utils/types';
+import moment from 'moment';
+import { isUndefined } from 'lodash';
 
 export default function Shipping() {
   const {
@@ -18,8 +20,13 @@ export default function Shipping() {
     formState: { errors },
     setValue,
     getValues,
+    setError,
+    clearErrors,
     watch,
-  } = useForm();
+  } = useForm({
+    mode: 'onChange',
+    reValidateMode: 'onBlur',
+  });
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { shippingAddress } = state;
@@ -37,6 +44,41 @@ export default function Shipping() {
     });
     router.push('/placeorder');
   };
+
+  const dropOffDate = watch('dropoffDate');
+  const pickupDate = watch('pickupDate');
+
+  const dropOffDateFormated = moment(dropOffDate).format('hh:mm A');
+  const pickupDateFormated = moment(pickupDate).format('hh:mm A');
+  const drOffFormValue = getValues('dropoffDate');
+  const pkOffFormValue = getValues('pickupDate');
+
+  useEffect(() => {
+    if (dropOffDateFormated === '12:00 AM' && !isUndefined(drOffFormValue)) {
+      setError(
+        'dropoffDate',
+        {
+          type: 'custom',
+          message: 'incorrect_time',
+        },
+        { shouldFocus: true },
+      );
+    } else if (dropOffDateFormated !== '12:00 AM' && !isUndefined(drOffFormValue)) {
+      clearErrors('dropoffDate');
+    }
+    if (pickupDateFormated === '12:00 AM' && !isUndefined(pkOffFormValue)) {
+      setError(
+        'pickupDate',
+        {
+          type: 'custom',
+          message: 'incorrect_time',
+        },
+        { shouldFocus: true },
+      );
+    } else if (pickupDateFormated !== '12:00 AM' && !isUndefined(pkOffFormValue)) {
+      clearErrors('pickupDate');
+    }
+  }, [dropOffDateFormated, pickupDateFormated, drOffFormValue, pkOffFormValue]);
 
   return (
     <Layout title="Shipping Address">
@@ -68,7 +110,13 @@ export default function Shipping() {
           </Grid>
         </Grid>
         <div style={{ margin: '20px auto', width: '40%', minWidth: 'fit-content' }}>
-          <Button variant="contained" type="submit" fullWidth color="primary">
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            color="primary"
+            disabled={Object.keys(errors).length > 0}
+          >
             Continue to order summary
           </Button>
         </div>
