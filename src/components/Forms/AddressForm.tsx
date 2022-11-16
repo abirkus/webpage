@@ -1,8 +1,10 @@
 import { List, ListItem, Typography, Checkbox, FormControlLabel } from '@mui/material';
+import { isNull, isUndefined } from 'lodash';
 import React from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
 import ControlledInputField from './Fields/ControlledInputField';
 import PlacesAutocomplete from './Fields/PlaceAutocomplete';
+import Cookies from 'js-cookie';
 
 interface AddressFormProps {
   control: Control;
@@ -18,6 +20,42 @@ export const AddressForm: React.FC<AddressFormProps> = ({
   setValue,
 }) => {
   const [isSameDropOffLocation, setIsSameDropOffLocation] = React.useState(false);
+
+  React.useEffect(() => {
+    const pickupLocation = getValues('pickupLocation');
+    const dropOffLocation = getValues('dropoffLocation');
+    const cookiePickupLocation = JSON.parse(
+      Cookies.get('shippingAddress') as string,
+    ).pickupLocation;
+    const cookieDropOffLocation = JSON.parse(
+      Cookies.get('shippingAddress') as string,
+    ).dropoffLocation;
+
+    if (
+      (!isUndefined(pickupLocation) && !isUndefined(dropOffLocation)) ||
+      isNull(cookieDropOffLocation)
+    ) {
+      if (pickupLocation === dropOffLocation) {
+        setIsSameDropOffLocation(true);
+      } else {
+        setIsSameDropOffLocation(false);
+      }
+    }
+
+    if (
+      (!isNull(cookiePickupLocation) && isNull(cookieDropOffLocation)) ||
+      cookiePickupLocation === cookieDropOffLocation
+    ) {
+      setIsSameDropOffLocation(true);
+      Cookies.set(
+        'shippingAddress',
+        JSON.stringify({
+          ...JSON.parse(Cookies.get('shippingAddress') as string),
+          ...{ dropoffLocation: cookiePickupLocation },
+        }),
+      );
+    }
+  }, []);
 
   return (
     <>

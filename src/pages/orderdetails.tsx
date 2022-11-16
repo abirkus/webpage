@@ -24,7 +24,7 @@ export default function Shipping() {
     clearErrors,
     watch,
   } = useForm({
-    mode: 'onChange',
+    mode: 'onBlur',
     reValidateMode: 'onBlur',
   });
   const router = useRouter();
@@ -110,13 +110,7 @@ export default function Shipping() {
           </Grid>
         </Grid>
         <div style={{ margin: '20px auto', width: '40%', minWidth: 'fit-content' }}>
-          <Button
-            variant="contained"
-            type="submit"
-            fullWidth
-            color="primary"
-            disabled={Object.keys(errors).length > 0}
-          >
+          <Button variant="contained" type="submit" fullWidth color="primary">
             Continue to order summary
           </Button>
         </div>
