@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carrectlyweb
-  namespace: default
+  namespace: carrectlyweb
 spec:
   selector:
     matchLabels:
       app: carrectlyweb
   replicas: 3
-  minReadySeconds: 10
+  minReadySeconds: 12
   template:
     metadata:
       labels:
