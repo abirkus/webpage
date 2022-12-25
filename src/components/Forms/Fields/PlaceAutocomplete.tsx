@@ -169,7 +169,7 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
                     ) : (
                       <span />
                     )}
-                    {secondary_text.length > 0 ? (
+                    {secondary_text?.length > 0 ? (
                       <Typography variant="body2" color="text.secondary">
                         {secondary_text}
                       </Typography>
