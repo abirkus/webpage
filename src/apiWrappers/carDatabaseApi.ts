@@ -32,7 +32,9 @@ export const carDatabaseApi = {
   },
 
   getAllYears: async () => {
-    const carYears = await axios.get(`/api/getYears`).then((response) => response.data as string[]);
+    const carYears = await axios
+      .get(`/api/getAllYears`)
+      .then((response) => response.data as string[]);
 
     return carYears;
   },
