@@ -58,7 +58,7 @@ export const CustomerDetailsSummary: React.FC = () => {
                         {fieldLabelsUI[key as keyof typeof fieldLabelsUI]}
                       </TableCell>
                       <TableCell sx={{ color: 'dimgray' }}>
-                        {typeof value === 'string'
+                        {typeof value === 'string' || typeof value === 'number'
                           ? value
                           : 'Model' in value
                           ? value.Model
