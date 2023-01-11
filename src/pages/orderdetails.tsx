@@ -84,7 +84,7 @@ export default function Shipping() {
     <Layout title="Shipping Address">
       <StepperComponent activeStep={1} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} id="book-form">
         <Grid container columnSpacing={3} width="100%" marginLeft="-12px">
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <CustomerInformationForm control={control} errors={errors} />
