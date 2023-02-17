@@ -11,6 +11,7 @@ import { StoreProvider } from '../../utils/Store';
 import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
 import * as fbq from '../lib/fpixel';
+import * as microsoft from '../lib/microsoft';
 import TagManager from 'react-gtm-module';
 import GooglePlacesScript from '../../utils/googlePlacesScript';
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -78,6 +79,24 @@ const App = (props: MyAppProps) => {
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '${fbq.FB_PIXEL_ID}');
+          `,
+            }}
+          />
+          <Script
+            id="microsoft-tracking-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(d,s,i)
+                {
+                  var f,j;
+                  f=d.getElementsByTagName(s)[0];
+                  j=d.createElement(s);
+                  j.async=true;
+                  j.src='https://mtag.microsoft.com/tags/'+i+'.js';
+                  f.parentNode.insertBefore(j,f);
+                })
+                (document,'script','${microsoft.MICROSOFT_ID}');
           `,
             }}
           />
