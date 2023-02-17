@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: carrectlyweb
   replicas: 3
-  minReadySeconds: 10
+  minReadySeconds: 12
   template:
     metadata:
       labels:
