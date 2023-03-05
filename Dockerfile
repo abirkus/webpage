@@ -3,7 +3,7 @@ FROM "<imageVersion>"
 WORKDIR /app
 
 #COPY . /app
-RUN apt-get update -y && apt-get install rsync -y && rsync -a --update . /app
+RUN apt-get update -y && apt-get install rsync -y && rsync -av --delete . /app
 
 ENV PATH ./.env:/app/.env:$PATH
 
