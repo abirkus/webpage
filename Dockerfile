@@ -6,7 +6,7 @@ WORKDIR /app
 
 ENV PATH ./.env:/app/.env:$PATH
 
-RUN rsync -a --update . /app
+RUN apt-get update -y && apt-get install rsync -y && rsync -a --update . /app
 
 RUN apt-get update -y && apt-get install yarn -y
 
