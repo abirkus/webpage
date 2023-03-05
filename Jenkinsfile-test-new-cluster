@@ -14,7 +14,7 @@ pipeline {
                      checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/carrectly/webpage.git']]])
                     }
                  } 
-                  stage('Update Docketfile')  {
+               /*   stage('Update Docketfile')  {
                      steps{
                          script {
                             def lastSuccessfulBuild = currentBuild.previousSuccessfulBuild
@@ -25,7 +25,7 @@ pipeline {
                             }
                          }
                      }
-                 }  
+                 }  */
                  stage('Build Docker image') {
                  steps {
                      script {

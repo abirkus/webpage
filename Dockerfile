@@ -1,12 +1,11 @@
-FROM "<imageVersion>"
+FROM node:latest
 
 WORKDIR /app
 
-#COPY . /app
+COPY . /app
+#RUN apt-get update -y && apt-get install rsync -y && rsync -a --update . /app
 
 ENV PATH ./.env:/app/.env:$PATH
-
-RUN apt-get update -y && apt-get install rsync -y && rsync -a --update . /app
 
 RUN apt-get update -y && apt-get install yarn -y
 
