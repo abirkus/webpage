@@ -13,7 +13,19 @@ pipeline {
                  steps {
                      checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/carrectly/webpage.git']]])
                     }
-                 } 
+                 }
+                 stage('Update Docketfile')  {
+                     steps{
+                         script {
+                            def lastSuccessfulBuild = currentBuild.previousSuccessfulBuild
+                            if (lastSuccessfulBuild) {
+                                sh "sed -i.bak 's|<imageVersion>|pavlohortovenko20/carrectlyweb:${lastSuccessfulBuild.getNumber()}|' ./Dockerfile"
+                            } else {
+                                sh "sed -i.bak 's|<imageVersion>|node:latest|' ./Dockerfile"
+                            }
+                         }
+                     }
+                 }    
                  stage('Build Docker image') {
                  steps {
                      script {
