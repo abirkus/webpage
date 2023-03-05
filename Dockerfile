@@ -1,4 +1,4 @@
-FROM node:latest
+FROM "<imageVersion>"
 
 WORKDIR /app
 
