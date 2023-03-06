@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carrectlyweb
+  #namespace: carrectlyweb
+spec:
+  selector:
+    matchLabels:
+      app: carrectlyweb
+  replicas: 3
+  minReadySeconds: 15
+  template:
+    metadata:
+      labels:
+         app: carrectlyweb
+    spec:
+      containers:
+        - name: carrectlyweb
+          image: "pavlohortovenko20/carrectlyweb:29"
+          #image: "<imageTag>"
+
