@@ -58,11 +58,12 @@ pipeline {
                         sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
                     }
                 }
-                 stage('GitPush') {
+
+                 stage('Deploy to Stage') {
                    steps { 
                        sshagent(['git_jenkins_prod_web_new']) {
                            sh 'mkdir deployment-helm-web'
-                           sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                           sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-stage-prod-cluster.git'
                            sh 'cp frontend-carrectly.yaml deployment-helm-web'
                            sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
                            sh 'git add ./deployment-helm-web'
@@ -71,6 +72,27 @@ pipeline {
                            }
                        }
                    }
+                
+                 stage('Deploy to Production') {
+                    steps {
+                        script {
+                            def confirm = input(message: 'Do you want to continue with the deployment? [y/n]', ok: 'y', parameters: [booleanParam(defaultValue: true, description: 'Proceed with the deployment?', name: 'deployConfirm')])
+                            if (confirm) {
+                            sshagent(['git_jenkins_prod_web_new']) {
+                                sh 'mkdir deployment-helm-web'
+                                sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                                sh 'cp frontend-carrectly.yaml deployment-helm-web'
+                                sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
+                                sh 'git add ./deployment-helm-web'
+                                sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                                sh "git push -f origin HEAD:main"
+                            } else {
+                                error('Deployment abourted')
+                            }
+                           }
+                       }
+                   }
+                }
                 stage('Clear cache') {
                     steps {
                         script {
