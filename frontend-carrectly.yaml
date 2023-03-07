@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carrectlyweb
-  #namespace: carrectlyweb
+  namespace: carrectlyweb
 spec:
   selector:
     matchLabels:
@@ -16,6 +16,4 @@ spec:
     spec:
       containers:
         - name: carrectlyweb
-          image: "pavlohortovenko20/carrectlyweb:29"
-          #image: "<imageTag>"
-
+          image: "<imageTag>"
