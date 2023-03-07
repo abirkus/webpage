@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carrectlyweb
-  namespace: carrectlyweb
+  namespace: stage-carrectlyweb
 spec:
   selector:
     matchLabels:
