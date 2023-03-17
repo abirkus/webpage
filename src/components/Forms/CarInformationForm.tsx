@@ -7,7 +7,6 @@ import ControlledRadioGroupField from './Fields/ControlledRadioGroupField';
 import ControlledAutocompleteField, {
   AutoCompleteProps,
 } from './Fields/ControlledAutoCompleteField';
-import moment from 'moment';
 
 interface CarInformationFromProps {
   control: Control;
@@ -25,12 +24,17 @@ export const CarInformationFrom: React.FC<CarInformationFromProps> = ({
   const [watchCarYear, watchCarMake, watchCarModel] = watch(['carYear', 'carMake', 'carModel']);
   const [carMakes, setCarMakes] = useState<CarMake[]>([]);
   const [carModels, setCarModels] = useState<CarModel[]>([]);
+  const [carYears, setCarYears] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     carDatabaseApi.getAllMakes().then((carMakes) => {
       setCarMakes(carMakes);
+      setLoading(false);
+    });
+    carDatabaseApi.getAllYears().then((years) => {
+      setCarYears(years);
       setLoading(false);
     });
   }, []);
@@ -59,9 +63,7 @@ export const CarInformationFrom: React.FC<CarInformationFromProps> = ({
     {
       fieldName: 'carYear',
       fieldLabel: 'Car Year',
-      options: Array.from({ length: moment().get('year') - 1979 }, (_, i) =>
-        (moment().get('year') - i).toString(),
-      ),
+      options: carYears,
     },
     {
       fieldName: 'carMake',
