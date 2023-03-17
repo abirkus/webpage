@@ -74,7 +74,7 @@ pipeline {
                         }
                     }
                 }
-                 stage('Deploy to Production') {
+                 stage('Deploy to Production ') {
                     steps {
                         script {
                             def confirm = input(message: 'Do you want to continue with the deployment? [y/n]', ok: 'y', parameters: [booleanParam(defaultValue: true, description: 'Proceed with the deployment?', name: 'deployConfirm')])
@@ -93,7 +93,7 @@ pipeline {
                                 }
                             }
                         }
-                    }
+                    } 
                 stage('Clear cache') {
                     steps {
                         script {
