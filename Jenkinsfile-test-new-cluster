@@ -2,19 +2,19 @@ pipeline {
          agent any
          environment{
             PROJECT_ID = 'adminpage-chicago'
-             CLUSTER_NAME = 'adminpage-cluster-test-gke'
-             LOCATION = 'us-central1-b'
              CREDENTIALS_ID = 'gke'
-             registry = "pavlohortovenko20/carrectlyweb:${env.BUILD_NUMBER}"
-             registryCredential = 'dockerhub_cred'
+             CLUSTER_NAME = 'adminpage-production'
+             LOCATION = 'us-central1-b'
+             registry ="pavlohortovenko20/carrectlyweb:${env.BUILD_NUMBER}"
+             registryCredential ='dockerhub_cred'
          }
          stages {
                  stage('Checout') {
                  steps {
-                     checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/carrectly/webpage.git']]])
+                     checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/carrectly/webpage.git']]])
                     }
-                 } 
-                  stage('Update Docketfile')  {
+                 }
+                 stage('Update Docketfile')  {
                      steps{
                          script {
                             def lastSuccessfulBuild = currentBuild.previousSuccessfulBuild
@@ -25,16 +25,17 @@ pipeline {
                             }
                          }
                      }
-                 }  
+                 }    
                  stage('Build Docker image') {
                  steps {
                      script {
-                        sh 'echo CARRECTLY_ADMIN_URL=$CARRECTLY_ADMIN_URL_DEV >>.env'
+                        sh 'echo CARRECTLY_ADMIN_URL=$CARRECTLY_ADMIN_URL  >>.env'
                         sh 'echo NEXT_PUBLIC_GOOGLE_ADS=$NEXT_PUBLIC_GOOGLE_ADS >>.env'
                         sh 'echo NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS >>.env'
                         sh 'echo NEXT_PUBLIC_FACEBOOK_PIXEL_ID=$NEXT_PUBLIC_FACEBOOK_PIXEL_ID >>.env'
                         sh 'echo NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID >>.env'
                         sh 'echo NEXT_PUBLIC_MICROSOFT_ID=$NEXT_PUBLIC_MICROSOFT_ID >>.env'
+                        sh 'echo CARRECTLY_ADMIN_URL_OLD=$CARRECTLY_ADMIN_URL_OLD >>.env'
                         dockerImage=docker.build registry
                       }
                     }
@@ -55,33 +56,72 @@ pipeline {
                 }
                 stage('Set image by k8s') {
                     steps {
-                        sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
+                        sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-stage-carrectly.yaml"
+                        
                     }
                 }
-                stage('GitPush') {
-                   steps { 
-                       sshagent(['git_jenkins_test']) {
-                           sh 'mkdir deployment-helm-web'
-                           sh 'git remote set-url origin git@github.com:gortovenko/carrectly-web-test.git'
-                           sh 'cp frontend-carrectly.yaml deployment-helm-web'
-                           sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
-                           sh 'git add ./deployment-helm-web'
+                stage('Deploy to Stage') {
+                 steps { 
+                       sshagent(['git_jenkins_prod_web_new']) {
+                           sh 'mkdir deployment-stage-web'
+                           sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                           sh 'cp frontend-stage-carrectly.yaml deployment-stage-web'
+                           sh 'cp frontend-stage-carrectly-svc.yaml deployment-stage-web'
+                           sh 'git add ./deployment-stage-web'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                            sh "git push -f origin HEAD:main"
-                           }
-                       }
-                   }
+                           sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"
+                        }
+                    }
+                }
+                 stage('Deploy to Production') {
+                    steps {
+                        script {
+                            def confirm = input(message: 'Do you want to continue with the deployment? [y/n]', ok: 'y', parameters: [booleanParam(defaultValue: true, description: 'Proceed with the deployment?', name: 'deployConfirm')])
+                            if (confirm) {
+                            sshagent(['git_jenkins_prod_web_new']) {
+                            sh 'rm -rf deployment-helm-web'
+                            sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
+                            sh 'mkdir deployment-helm-web'
+                            sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                            sh 'cp frontend-carrectly.yaml deployment-helm-web'
+                            sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
+                            sh 'git add ./deployment-helm-web'
+                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                            sh "git push -f origin HEAD:main"
+                                } 
+                            }
+                            else {
+                                    error('Deployment abourted')
+                                }
+                            }
+                        }
+                    } 
                 stage('Clear cache') {
                     steps {
                         script {
-                            sh "curl -X POST -H 'X-Auth-Key: ERmTcV7AlF2qB9txHYeNTyu5BU0ublGIJaVsBuHO' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/b50ae345b88af2be373473c5be04a489/purge_cache'"
+                            sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"                        
+                        }
                     }
                 }
             }
         }
-    }
+    
 
-     /* If you wanna the change deployment process with use K8s plugin rollingupdates include, just use describe step belowe: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* If you wanna the change deployment process with use K8s plugin rollingupdates include, just use describe step belowe: 
 in adminpage-deploy.yaml file describe process of rollingupdates  
 be carereful with it cuz this step not waranty 100 % of property deployment if you use small cluster , sometimes not anothe memory of node by k8s cluster 
     stage('Deploy to GKE') { 
@@ -95,4 +135,4 @@ be carereful with it cuz this step not waranty 100 % of property deployment if y
                     credentialsId: env.CREDENTIALS_ID,
                     verifyDeployments: true])
                     }
-*/
+                }*/
