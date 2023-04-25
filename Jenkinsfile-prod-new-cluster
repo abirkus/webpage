@@ -70,7 +70,7 @@ pipeline {
                            sh 'git add ./deployment-helm-web'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                            sh "git push -f origin HEAD:main"
-                           sh 'sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"'
+                           sh 'sh "curl -X POST -H 'X-Auth-Key:kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"'
                         }
                     }
                 }
