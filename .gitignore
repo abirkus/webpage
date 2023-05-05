@@ -38,14 +38,4 @@ yarn-error.log*
 
 #environment variables
 .env
-/.vs/webpage/v17/workspaceFileList.bin
-/.vs/webpage/v17/.wsuo
-/.vs/webpage/FileContentIndex/read.lock
-/.vs/webpage/FileContentIndex/6cf4f2fd-28fc-44bb-a19f-7c0e29f6bc6f.vsidx
-/.vs/webpage/FileContentIndex/003bc313-61ee-4e87-a791-4990c5a31d21.vsidx
-/.vs/webpage/config/applicationhost.config
-/.vs/VSWorkspaceState.json
-/.vs/slnx.sqlite
-/.vs/ProjectSettings.json
-/.vs/webpage/FileContentIndex/994f8598-eaca-4b1f-8f36-b303943624fc.vsidx
-/.vs/webpage/FileContentIndex/599669da-73a0-4e63-98f5-5d411be28585.vsidx
+/.vs/
