@@ -515,9 +515,9 @@ const termsAndConditions = () => (
                               }}
                             >
                               Cancellation Timeframe: Clients must notify us of any cancellation
-                              24 hours prior to the scheduled pickup time. If the cancellation is
-                              made less than 2 hours before the scheduled pickup time, the client
-                              will be charged the full amount of the reservation.{' '}
+                              24 hours prior to the scheduled pickup & drop off times. If the cancellation is
+                              made less than 2 hours before the scheduled pickup & drop off times, the client
+                              might incur a $25 cancellation fee at Carrectly's discretion.{' '}
                             </span>
                           </p>
                           <p>
@@ -528,9 +528,9 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              No Show: If a client fails to show up for their scheduled pickup time
-                              without notifying us, the client will be charged the full amount of
-                              the reservation.{' '}
+                              No Show: If a client fails to show up for their scheduled pickup
+                              & drop off times without notifying us, the client is subject to a potential
+                              $25 fee for their reserved spot.{' '}
                             </span>
                           </p>
                           <p>
@@ -542,20 +542,7 @@ const termsAndConditions = () => (
                               }}
                             >
                               Changes to Reservations: Any changes to reservations must be made at
-                              least 2 hours in advance of the scheduled pickup time.{' '}
-                            </span>
-                          </p>
-                          <p>
-                            <span
-                              style={{
-                                fontWeight: 400,
-                                fontFamily: 'Lato',
-                                fontSize: '18px',
-                              }}
-                            >
-                              Refunds: If a cancellation is made within the required timeframe,
-                              Carrectly will refund the full amount of the reservation to the
-                              client.{' '}
+                              least 2 hours in advance of the scheduled pickup & drop off times.{' '}
                             </span>
                           </p>
                           <p>
@@ -571,19 +558,6 @@ const termsAndConditions = () => (
                               However, we also ask that our clients respect our cancellation policy
                               as it allows us to manage our resources efficiently and provide reliable
                               service to all of our clients.{' '}
-                            </span>
-                          </p>
-                          <p>
-                            <span
-                              style={{
-                                fontWeight: 400,
-                                fontFamily: 'Lato',
-                                fontSize: '18px',
-                              }}
-                            >
-                              Thank you for choosing Carrectly for your car service needs. If you have
-                              any questions or concerns about our cancellation policy, please do not
-                              hesitate to contact us.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
