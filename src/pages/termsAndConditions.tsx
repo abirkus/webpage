@@ -444,7 +444,7 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              All in advance or on-demand services&nbsp;require a minimum of 1 hour
+                              All of our services are on-demand and require a minimum of 2 hours
                               notice.&nbsp;
                             </span>
                             <span
@@ -454,16 +454,15 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              You may request a Pick Up by providing the necessary descriptive
-                              information for the desired Auto Care Services or selecting one of the
-                              Fixed Price options, including (1) the desired Auto Care Services, (2)
-                              the Pick Up location and (3) the desired Pick-Up time. You acknowledge
-                              that exact pricing for many Auto Care Services cannot be provided in
-                              advance, and will depend on various factors including your vehicle and
-                              the nature of the Auto Care Services to be provided. Through the
-                              Services, upon submitting a Service Description and requesting such
-                              Auto Care Services to be scheduled, an Agent will be contacting you to
-                              provide Pickup and Drop Off related to your Auto Care Services.{' '}
+                              You may reserve a pick up by providing the necessary information for
+                              the services requested or selecting one of our prepackaged fixed price
+                              options including: 1) the desired auto care services 2) the pick up location 
+                              and 3) the desired pick up time. By accepting this, you acknowledge and agree 
+                              that exact pricing for auto care services cannot be determined in advance and 
+                              will depend on various factors including your vehicle condition and the nature 
+                              of the services to be provided. Upon submitting reservation request, an agent 
+                              will be contacting you to arrange the pick up and drop off related to your auto 
+                              care services.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -501,13 +500,90 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              You will have the ability to cancel Auto Care Services for a
-                              reasonable period of time before the scheduled Drop Off or Pick Up
-                              time. Trip cancellations must take place no less than one hour prior
-                              to the reservation pick-up time or before an Agent is dispatched to
-                              the pickup location. Failure to cancel the service during the
-                              Cancellation Period may result in a $20 cancellation charge, upon
-                              Carrectly’s discretion.{' '}
+                              At Carrectly, we understand that sometimes plans change and you may
+                              need to cancel your car service reservation. To ensure that we can
+                              continue to provide exceptional service to all of our clients, we
+                              have established the following cancellation policy:{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Cancellation Timeframe: Clients must notify us of any cancellation
+                              24 hours prior to the scheduled pickup time. If the cancellation is
+                              made less than 2 hours before the scheduled pickup time, the client
+                              will be charged the full amount of the reservation.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              No Show: If a client fails to show up for their scheduled pickup time
+                              without notifying us, the client will be charged the full amount of
+                              the reservation.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Changes to Reservations: Any changes to reservations must be made at
+                              least 2 hours in advance of the scheduled pickup time.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Refunds: If a cancellation is made within the required timeframe,
+                              Carrectly will refund the full amount of the reservation to the
+                              client.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              We understand that unforeseen circumstances can arise and we will
+                              make every effort to work with our clients to accommodate their needs.
+                              However, we also ask that our clients respect our cancellation policy
+                              as it allows us to manage our resources efficiently and provide reliable
+                              service to all of our clients.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Thank you for choosing Carrectly for your car service needs. If you have
+                              any questions or concerns about our cancellation policy, please do not
+                              hesitate to contact us.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -524,16 +600,15 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Carrectly concierge will wait up to 30 minutes after your scheduled
-                              pick-up time to make contact with you. &nbsp;If you are bringing the
-                              vehicle to the designated location, it is your responsibility to
-                              notify us of any material delay. If you have not made contact with
-                              your driver or Carrectly within 30 minutes of the scheduled pickup
-                              time, we will consider your reservation a &quot;no show&quot; and you
-                              may incur a $40 fee. Keep in mind, this fee is to cover the cost of
-                              vetting and selecting a service center for the time slot picked by
-                              you, scheduling auto service appointment, dispatching a driver to your
-                              location, and concierge’s pay while waiting.{' '}
+                              Carrectly concierge will wait up to 20 minutes after your scheduled
+                              pick up time for your response. If you are bringing the vehicle to
+                              our location, it is your responsibility to notify us of any potential
+                              delays. If you have not made contact with your driver or Carrectly
+                              customer service representative within 20 minutes of your scheduled
+                              pick up time, we will consider your reservation a “no show” and you
+                              may incur a $50 fee. Please note that this fee is to cover the cost
+                              of scheduling the appointment, dispatching a driver to your location
+                              and a concierge’s time while waiting.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -550,20 +625,19 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Prior to Pick Up the vehicle must be parked at the location designated
-                              in your Service Description at the designated time. Drop Off will be
-                              assumed to take place at the same location where Pick Up occurred,
-                              unless instructed my you to drop off a car at a different location
-                              within the coverage area of our services. You are solely responsible
-                              for leaving your vehicle in a safe and legal location, and agree to
-                              hold Carrectly harmless from any damages resulting from your failure
-                              to do so.{' '}
+                              Prior to the pick up, the vehicle must be parked at the designated
+                              location provided in your reservation at the scheduled time. Vehicle
+                              will be returned to the same location where pick up occurred unless
+                              instructed differently by the customer at the time of the pick up.
+                              It is the responsibility of the customer to leave your vehicle in a
+                              safe and legal location and agree to hold Carrectly harmless from any
+                              damages from your failure to do so.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
                           <p>
                             <span style={{ fontSize: '18px', fontFamily: 'Lato' }}>
-                              <b>Changes in Scheduling and Delays</b>
+                              <b>Timing and Scheduling</b>
                             </span>
                           </p>
                           <p>
@@ -579,7 +653,48 @@ const termsAndConditions = () => (
                               Please note, the timeliness of vehicle returns also depend on the
                               completion of repairs and other maintenance services by third party
                               service providers or dealers, and Carrectly cannot be liable for any
-                              delays caused by service providers. &nbsp;
+                              delays caused by service providers.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Important: please note reservations for pick up and drop off include
+                              a two hour window. We always accommodate our customers and try our
+                              best to be there at the requested time but due to other pickups, traffic,
+                              and parking, or any circumstances that may arise beyond our control,
+                              we ask for 2 hour wiggle room.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              Vehicle return is estimated based on traffic patterns at the time of return.
+                              Our quality control also performs a final walk through, performs any touch
+                              ups if necessary, and then leaves the facility.{' '}
+                            </span>
+                          </p>
+                          <p>
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontFamily: 'Lato',
+                                fontSize: '18px',
+                              }}
+                            >
+                              If you are meeting the concierge, they will send you an exact ETA once on
+                              the way. If you are unable to meet us, the concierge will notify you once
+                              the vehicle has been dropped off.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -615,8 +730,8 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Carrectly operates on a space available, concierges available, first
-                              come first served basis. From time to time we experience high
+                              Carrectly operates on a space availability, number of concierges available
+                              and first come first served basis. From time to time we experience high
                               reservation volumes and concierge availability may be limited.
                               Examples include holidays, large local events such as stadium events
                               and weekend, rush hour, etc. Carrectly cannot be liable if the
@@ -624,45 +739,6 @@ const termsAndConditions = () => (
                               a reservation. Keep in mind, the earlier you book your reservation,
                               the easier it is to plan logistics, schedule the service, and dispatch
                               a concierge to you.{' '}
-                            </span>
-                          </p>
-                          <p>&nbsp;</p>
-                          <p>
-                            <span style={{ fontSize: '18px', fontFamily: 'Lato' }}>
-                              <b>Fare</b>
-                            </span>
-                          </p>
-                          <p>
-                            <span style={{ fontFamily: 'Lato', fontSize: '18px' }}>
-                              <strong>Round Trips</strong>
-                              <span style={{ fontWeight: 400 }}>
-                                : when your vehicle is picked up from you and delivered back to you.
-                                The amount of time it takes for the service, starting from the
-                                scheduled pick-up time and ending when the vehicle is dropped off
-                                multiplied by our hourly rate ($25 / hr) is the cost of our
-                                services. This does not include the actual price the service center
-                                charges for the cost of maintenance or repair.
-                              </span>
-                            </span>
-                          </p>
-                          <p>
-                            <span style={{ fontFamily: 'Lato', fontSize: '18px' }}>
-                              <strong>One Way</strong>
-                              <span style={{ fontWeight: 400 }}>
-                                : When your vehicle is picked up from you and delivered to another
-                                location, per your or service center’s direction. The service is on
-                                per mile basis, where 5 miles = $30, or $6 per mile, after $30
-                                minimum. This does not include the actual price the service center
-                                charges for the cost of maintenance or repair.
-                              </span>
-                            </span>
-                          </p>
-                          <p>
-                            <span style={{ fontFamily: 'Lato', fontSize: '18px' }}>
-                              <strong>Fixed Price</strong>
-                              <span style={{ fontWeight: 400 }}>
-                                : These prices do not fluctuate and are listed on our website.
-                              </span>
                             </span>
                           </p>
                           <p>&nbsp;</p>
@@ -679,14 +755,12 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              The fees for the Producrs and Support services are listed in the
-                              invoice.  Customers agree to pay, either in cash or authorize
-                              Carrectly’s to charge the card you provide to us. All amounts payable
-                              under this agreement should be paid net 24 hours from the invoice date
-                              unless stated otherwise in the invoice. Consumers pay requests for an
-                              extension of the due date; however, Carrectly has jurisdiction over if
-                              such requests can be approved. A 3.5% credit card processing fee will
-                              be applied to ALL invoices above $1000.
+                              The fees for the products and services are listed in the invoice.
+                              Customers agree to pay, either in cash, QuickPay, or autorhize Carrectly
+                              to charge the credit card provided to us. A 3.5% credit card processing
+                              fee will be applied to ALL invoices over $500. All amounts payable under
+                              this agreement need to be paid to us prior to the return of the vehicle
+                              or at the drop off.{' '}
                             </span>
                           </p>
                           <p>
@@ -697,11 +771,9 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Special financing may be provided in the form of split payment. If
-                              split payments are requested by the consumer, it is under Carrectly’s
-                              jurisdiction to provide that option. If split payments are approved
-                              for the consumer, then all amounts payable shall be paid by the
-                              appropriate due date stated in the invoice.{' '}
+                              As a small business, we do not offer in house financing. “Afterpay” is
+                              provided via Square and there you will have the option to create a payment
+                              plan if approved by Square.{' '}
                             </span>
                           </p>
                           <p>
@@ -788,7 +860,7 @@ const termsAndConditions = () => (
                               }}
                             >
                               Carrectly provides its services in Chicago and its suburbs only. Our
-                              concierge service if offered within a 5-mile radius of our service
+                              concierge service is offered within a 5-mile radius of our service
                               facility in Chicago for services under $60. All services higher than
                               $60, can be picked up within a maximum of 15 miles radius from service
                               facility or under the jurisdiction of Carrectly Inc.
@@ -920,13 +992,15 @@ const termsAndConditions = () => (
                                 to reimbursement from Carrectly for such vehicle damage. You agree
                                 to provide to Carrectly any information or documentation that
                                 Carrectly may require in order to verify a claim for reimbursement
-                                for Vehicle Damage. Carrectly will not be responsible for any
-                                pre-existing damage to the vehicle or any incidental, special,
-                                exemplary or consequential damages in connection with any vehicle
-                                damage, including without limitation interruption of business, loss
-                                of market and/or loss of use. Carrectly’s liability to reimburse you
-                                for vehicle damage shall be limited to the actual costs of repair by
-                                an Auto Care Facility selected by Carrectly.
+                                for Vehicle Damage. It is the customer’s responsibility to prove the
+                                pre existing or lack of pre existing condition of the vehicle prior
+                                to turning over to Carrectly and proof of claimed damages hereafter.
+                                Carrectly will not be responsible for any pre-existing damage to the
+                                vehicle or any incidental, special, exemplary or consequential damages
+                                in connection with any vehicle damage, including without limitation
+                                interruption of business, loss of market and/or loss of use. Carrectly’s
+                                liability to reimburse you for vehicle damage shall be limited to the
+                                actual costs of repair by an Auto Care Facility selected by Carrectly.
                               </span>
                             </span>
                           </p>
@@ -1416,12 +1490,14 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              The auto care facilities used by Carrectly are provided by third party
-                              auto care facility providers, and by utilizing auto care services, you
-                              authorize Carrectly to have your vehicle serviced and stored at any
-                              one of such auto care facilities, subject to the policies of such
-                              facility then in effect. You knowingly and freely assume all risk when
-                              using the services, including the auto care services.{' '}
+                              The auto care facilities used by Carrectly are provided by our partner shops,
+                              and by utilizing auto care services, you authorize Carrectly to have 
+                              your vehicle serviced and stored at any one of such auto care facilities,
+                              subject to the policies of such facility then in effect. Auto care facilities
+                              are located closely to our headquarters and Carrectly occasionally rents body
+                              shop space or mechanical space if none is available at our facility at the time
+                              of the booking.You knowingly and freely assume all risk when using the services,
+                              including the auto care services.{' '}
                             </span>
                           </p>
                           <p>
@@ -1522,14 +1598,14 @@ const termsAndConditions = () => (
                                 fontSize: '18px',
                               }}
                             >
-                              Because the auto care Services involve the utilization of third party
-                              Dealers, Washes, and other auto care Facilities, in the event that you
-                              have a dispute with a auto care Facility, Carrectly may, in its sole
-                              discretion, facilitate communication between you and the auto care
-                              Facility in connection with such dispute. If such a dispute is unable
-                              to be resolved between you and the auto care Facility, Carrectly may,
-                              in its sole discretion, and where feasible, intervene in such dispute
-                              and take any actions we deem appropriate.
+                              Because the auto care services occasionally involve the utilization of
+                              our partner shops and other auto care facilities, in the event that you
+                              have a dispute with an auto care facility, Carrectly may, in its sole
+                              discretion, facilitate communication between you and the auto care Facility
+                              in connection with such dispute. If such a dispute is unable to be resolved
+                              between you and the auto care Facility, Carrectly may, in its sole discretion,
+                              and where feasible, intervene in such dispute and take any actions we deem
+                              appropriate.{' '}
                             </span>
                           </p>
                           <p>&nbsp;</p>
