@@ -23,7 +23,7 @@ interface MyAppProps extends AppProps {
 
 const App = (props: MyAppProps) => {
   const router = useRouter();
-  useEffect(() => {
+    useEffect(() => {
     TagManager.initialize({ gtmId: `${gtag.GTM_ID}` });
     fbq.pageview();
 
@@ -87,16 +87,22 @@ const App = (props: MyAppProps) => {
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-                (function(d,s,i)
-                {
-                  var f,j;
-                  f=d.getElementsByTagName(s)[0];
-                  j=d.createElement(s);
-                  j.async=true;
-                  j.src='https://mtag.microsoft.com/tags/'+i+'.js';
-                  f.parentNode.insertBefore(j,f);
-                })
-                (document,'script','${microsoft.MICROSOFT_ID}');
+              (function(w,d,t,r,u)
+              {
+                  var f,n,i;
+                  w[u]=w[u]||[],f=function()
+                  {
+                      var o={ti: '${microsoft.MICROSOFT_PAGEVIEW_TAG_ID}', enableAutoSpaTracking: true};
+                      o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+                  },
+                  n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+                  {
+                      var s=this.readyState;
+                      s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+                  },
+                  i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+              })
+              (window,document,"script","//bat.bing.com/bat.js","uetq");
           `,
             }}
           />
