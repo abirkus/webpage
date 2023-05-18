@@ -1,11 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import Script from 'next/script';
 import Image from 'next/image';
 import Layout from '../components/Layout/Layout';
 import * as gtag from '../lib/gtag';
-import * as microsoft from '../lib/microsoft';
 import Cookies from 'js-cookie';
 
 export type UserInfo = {
