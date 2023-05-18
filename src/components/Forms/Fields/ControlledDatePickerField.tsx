@@ -25,6 +25,10 @@ function range(start: number, end: number) {
   return result;
 }
 
+function isSameDayAndMonth(m1: any) {
+  return m1?.date() === 26 && m1?.month() === 12;
+}
+
 const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
   control,
   errors,
@@ -39,6 +43,8 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
     (date: Moment) => {
       const dateToCheck = date.clone().set({ hour: startDate.hour(), minute: 10, second: 0 });
       return (
+        (dateToCheck.isSame(moment().set('date', 26), 'date') &&
+          dateToCheck.isSame(moment().set('month', 11), 'month')) ||
         dateToCheck.weekday() === 0 ||
         dateToCheck < startDate.clone().startOf('day') ||
         (dateToCheck.isSame(startDate, 'day') &&
@@ -109,16 +115,30 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
             size="large"
             {...field}
           />
-          {Boolean(errors[fieldName]) && (
+          {errors[fieldName]?.message === 'incorrect_time' && Boolean(errors[fieldName]) ? (
             <Typography
               sx={{
                 color: '#ff1744',
                 fontSize: '0.75rem',
                 margin: '3px 14px 0px',
               }}
-            >{`${
-              fieldLabel.charAt(0).toUpperCase() + fieldLabel.slice(1)
-            } is required`}</Typography>
+            >
+              {`You need to select right time for ${fieldLabel
+                .substring(0, fieldLabel.length - 4)
+                .toLowerCase()}`}
+            </Typography>
+          ) : (
+            Boolean(errors[fieldName]) && (
+              <Typography
+                sx={{
+                  color: '#ff1744',
+                  fontSize: '0.75rem',
+                  margin: '3px 14px 0px',
+                }}
+              >{`${
+                fieldLabel.charAt(0).toUpperCase() + fieldLabel.slice(1)
+              } is required`}</Typography>
+            )
           )}
         </Box>
       )}

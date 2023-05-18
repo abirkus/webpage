@@ -34,6 +34,7 @@ pipeline {
                         sh 'echo NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS >>.env'
                         sh 'echo NEXT_PUBLIC_FACEBOOK_PIXEL_ID=$NEXT_PUBLIC_FACEBOOK_PIXEL_ID >>.env'
                         sh 'echo NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID >>.env'
+                        sh 'echo NEXT_PUBLIC_MICROSOFT_PAGEVIEW_TAG_ID=$NEXT_PUBLIC_MICROSOFT_PAGEVIEW_TAG_ID >>.env'
                         sh 'echo CARRECTLY_ADMIN_URL_OLD=$CARRECTLY_ADMIN_URL_OLD >>.env'
                         dockerImage=docker.build registry
                       }
@@ -59,10 +60,10 @@ pipeline {
                         
                     }
                 }
-
-                 stage('Deploy to Stage') {
-                   steps { 
-                       sshagent(['git_jenkins_prod_web_new']) {
+                stage('Deploy to Stage') {
+                 steps { 
+                       sshagent(['git_jenkins_prod_web_new_update']) {
+                           sh 'rm -rf deployment-stage-web'
                            sh 'mkdir deployment-stage-web'
                            sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
                            sh 'cp frontend-stage-carrectly.yaml deployment-stage-web'
@@ -70,26 +71,29 @@ pipeline {
                            sh 'git add ./deployment-stage-web'
                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                            sh "git push -f origin HEAD:main"
-                           sh 'sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"'
+                           sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"
                         }
                     }
                 }
-                 stage('Deploy to Production ') {
+                 stage('Deploy to Production') {
                     steps {
                         script {
                             def confirm = input(message: 'Do you want to continue with the deployment? [y/n]', ok: 'y', parameters: [booleanParam(defaultValue: true, description: 'Proceed with the deployment?', name: 'deployConfirm')])
                             if (confirm) {
-                            sshagent(['git_jenkins_prod_web_new']) {
-                                sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
-                                sh 'mkdir deployment-helm-web'
-                                sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
-                                sh 'cp frontend-carrectly.yaml deployment-helm-web'
-                                sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
-                                sh 'git add ./deployment-helm-web'
-                                sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                                sh "git push -f origin HEAD:main"
-                            } else {
-                                error('Deployment abourted')
+                            sshagent(['git_jenkins_prod_web_new_update']) {
+                            sh 'rm -rf deployment-helm-web'
+                            sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
+                            sh 'mkdir deployment-helm-web'
+                            sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
+                            sh 'cp frontend-carrectly.yaml deployment-helm-web'
+                            sh 'cp frontend-carrectly-svc.yaml deployment-helm-web'
+                            sh 'git add ./deployment-helm-web'
+                            sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                            sh "git push -f origin HEAD:main"
+                                } 
+                            }
+                            else {
+                                    error('Deployment abourted')
                                 }
                             }
                         }

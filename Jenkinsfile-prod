@@ -23,6 +23,7 @@ pipeline {
                         sh 'echo NEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS >>.env'
                         sh 'echo NEXT_PUBLIC_FACEBOOK_PIXEL_ID=$NEXT_PUBLIC_FACEBOOK_PIXEL_ID >>.env'
                         sh 'echo NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID >>.env'
+                        sh 'echo NEXT_PUBLIC_MICROSOFT_PAGEVIEW_TAG_ID=$NEXT_PUBLIC_MICROSOFT_PAGEVIEW_TAG_ID >>.env'
                         dockerImage=docker.build registry
                       }
                     }

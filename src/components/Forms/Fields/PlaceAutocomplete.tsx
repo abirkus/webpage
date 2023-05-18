@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TextField, Grid, Typography, Autocomplete, Box } from '@mui/material';
 import React from 'react';
 import parse from 'autosuggest-highlight/parse';
@@ -5,6 +6,7 @@ import throttle from 'lodash/throttle';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { getGeocode, getZipCode } from 'use-places-autocomplete';
 import { Controller } from 'react-hook-form';
+import Cookies from 'js-cookie';
 
 const autocompleteService = { current: null };
 
@@ -39,6 +41,13 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
       ),
     [],
   );
+
+  React.useEffect(() => {
+    const cookieLocation = JSON.parse(Cookies.get('shippingAddress') as string)[fieldName];
+    if (cookieLocation) {
+      setValue(cookieLocation);
+    }
+  }, []);
 
   React.useEffect(() => {
     let active = true;
@@ -94,11 +103,11 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
           getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
           filterOptions={(x) => x}
           options={options}
-          autoComplete
+          autoComplete={true}
           includeInputInList
           filterSelectedOptions
           value={value}
-          onChange={(event: any, newValue: any | null) => {
+          onChange={(event: any, newValue: any | null, reason: string) => {
             setOptions(newValue ? [newValue, ...options] : options);
             const address = newValue?.description;
             newValue
@@ -110,6 +119,10 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
                 })
               : setValue(newValue),
               field.onChange(newValue?.description);
+            if (reason === 'clear') {
+              setValue(null);
+              return;
+            }
           }}
           onInputChange={(event, newInputValue) => {
             setInputValue(newInputValue);
@@ -124,11 +137,16 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
             />
           )}
           renderOption={(props, option) => {
-            const matches = option.structured_formatting.main_text_matched_substrings;
-            const parts = parse(
-              option.structured_formatting.main_text,
-              matches.map((match: any) => [match.offset, match.offset + match.length]),
-            );
+            let parts: any;
+            let secondary_text = '';
+            if (option.structured_formatting) {
+              const matches = option.structured_formatting.main_text_matched_substrings;
+              parts = parse(
+                option.structured_formatting.main_text,
+                matches.map((match: any) => [match.offset, match.offset + match.length]),
+              );
+              secondary_text = option.structured_formatting.secondary_text;
+            }
 
             return (
               <li {...props}>
@@ -137,19 +155,25 @@ const PlacesAutocomplete = ({ labelField, control, fieldName, required, errors }
                     <Box component={LocationOnIcon} sx={{ color: 'text.secondary', mr: 2 }} />
                   </Grid>
                   <Grid item xs>
-                    {parts.map((part: any, index: any) => (
-                      <span
-                        key={index}
-                        style={{
-                          fontWeight: part.highlight ? 700 : 400,
-                        }}
-                      >
-                        {part.text}
-                      </span>
-                    ))}
-                    <Typography variant="body2" color="text.secondary">
-                      {option.structured_formatting.secondary_text}
-                    </Typography>
+                    {parts ? (
+                      parts.map((part: any, index: any) => (
+                        <span
+                          key={index}
+                          style={{
+                            fontWeight: part.highlight ? 700 : 400,
+                          }}
+                        >
+                          {part.text}
+                        </span>
+                      ))
+                    ) : (
+                      <span />
+                    )}
+                    {secondary_text?.length > 0 ? (
+                      <Typography variant="body2" color="text.secondary">
+                        {secondary_text}
+                      </Typography>
+                    ) : null}
                   </Grid>
                 </Grid>
               </li>

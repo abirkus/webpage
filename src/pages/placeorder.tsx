@@ -19,6 +19,7 @@ function PlaceOrder() {
   const { state, dispatch } = useContext(Store);
   const { cartItems, shippingAddress, carSize } = state;
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   let priceIndex = 0;
   if (carSize === 'large') {
@@ -70,14 +71,19 @@ function PlaceOrder() {
   const placeOrderHandler = async () => {
     try {
       setLoading(true);
-      await axios.post('/api/sendOrder', {
-        services: basicCartItems,
-        customer: customerInfo,
-        order,
-      });
-      dispatch({ type: 'CART_CLEAR' });
-      setLoading(false);
-      router.push('/confirmation');
+      if (basicCartItems.length > 0) {
+        await axios.post('/api/sendOrder', {
+          services: basicCartItems,
+          customer: customerInfo,
+          order,
+        });
+        dispatch({ type: 'CART_CLEAR' });
+        setLoading(false);
+        router.push('/confirmation');
+      } else {
+        setLoading(false);
+        setError(true);
+      }
     } catch (err) {
       setLoading(false);
     }
@@ -138,6 +144,16 @@ function PlaceOrder() {
           >
             Edit Services
           </Button>
+          {error && (
+            <>
+              <Typography align="center" color="red">
+                You have not selected any services.
+              </Typography>
+              <Typography align="center" color="red">
+                Please select the services you want to order and repeat sending the order again.
+              </Typography>
+            </>
+          )}
           <Typography marginTop="10px" fontSize="0.9rem">
             Once the order is placed we will reach out to you via text to confirm order details and
             to coordinate vehicle pickup times. Due to increasingly high service volume, please
