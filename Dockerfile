@@ -1,5 +1,5 @@
-FROM "<imageVersion>"
-
+#FROM "<imageVersion>"
+FROM pavlohortovenko20/carrectlyweb:111
 WORKDIR /app
 
 #RUN apt-get update -y && apt-get install rsync -y && rsync -av --delete . /app
