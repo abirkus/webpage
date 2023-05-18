@@ -61,20 +61,6 @@ pipeline {
                         
                     }
                 }
-                stage('Deploy to Stage') {
-                 steps { 
-                       sshagent(['git_jenkins_prod_web_new']) {
-                           sh 'mkdir deployment-stage-web'
-                           sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
-                           sh 'cp frontend-stage-carrectly.yaml deployment-stage-web'
-                           sh 'cp frontend-stage-carrectly-svc.yaml deployment-stage-web'
-                           sh 'git add ./deployment-stage-web'
-                           sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                           sh "git push -f origin HEAD:main"
-                           sh "curl -X POST -H 'X-Auth-Key: kXi-d4mDjGpTiafhJt8xYf78EbQlVtjjF2wz6cUx' -H 'X-Auth-Email: Taras@carrectly.com'  -H \'type: application/json\' -d'{\"purge_everything\" :true}' 'https://api.cloudflare.com/client/v4/zones/7788351225ff0290334491b49d064a7b/purge_cache'"
-                        }
-                    }
-                }
                  stage('Deploy to Production') {
                     steps {
                         script {
