@@ -62,7 +62,7 @@ pipeline {
                 }
                 stage('Deploy to Stage') {
                  steps { 
-                       sshagent(['git_jenkins_prod_web_new']) {
+                       sshagent(['git_jenkins_prod_web_new_update']) {
                            sh 'rm -rf deployment-stage-web'
                            sh 'mkdir deployment-stage-web'
                            sh 'git remote set-url origin git@github.com:gortovenko/carrectlyweb-prod.git'
@@ -80,7 +80,7 @@ pipeline {
                         script {
                             def confirm = input(message: 'Do you want to continue with the deployment? [y/n]', ok: 'y', parameters: [booleanParam(defaultValue: true, description: 'Proceed with the deployment?', name: 'deployConfirm')])
                             if (confirm) {
-                            sshagent(['git_jenkins_prod_web_new']) {
+                            sshagent(['git_jenkins_prod_web_new_update']) {
                             sh 'rm -rf deployment-helm-web'
                             sh "sed -i.bak 's|<imageTag>|${registry}|' ./frontend-carrectly.yaml"
                             sh 'mkdir deployment-helm-web'
