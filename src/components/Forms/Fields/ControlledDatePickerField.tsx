@@ -41,15 +41,20 @@ const ControlledDatePickerField: React.FC<ControlledDatePickerFieldProps> = ({
 }) => {
   const disabledDate = useCallback(
     (date: Moment) => {
+      const disabledDates = [ { day: 26, month: 12 }, { day: 29, month: 5, year: 2023 } ];
       const dateToCheck = date.clone().set({ hour: startDate.hour(), minute: 10, second: 0 });
+
+      const sameDate = (disableDate: any) => 
+            dateToCheck.date() === disableDate.day &&
+            dateToCheck.month() === disableDate.month - 1 &&
+            (!disableDate.year || dateToCheck.year() === disableDate.year);
+
       return (
-        (dateToCheck.isSame(moment().set('date', 26), 'date') &&
-          dateToCheck.isSame(moment().set('month', 11), 'month')) ||
-        dateToCheck.weekday() === 0 ||
-        dateToCheck < startDate.clone().startOf('day') ||
-        (dateToCheck.isSame(startDate, 'day') &&
-          dateToCheck > startDate.clone().set({ hour: 16, minute: 0, second: 0 }))
-      );
+         disabledDates.some(sameDate) ||
+         dateToCheck.weekday() === 0 ||
+         dateToCheck < startDate.clone().startOf('day') ||
+         (dateToCheck.isSame(startDate, 'day') && dateToCheck > startDate.clone().set({ hour: 16, minute: 0, second: 0 }))
+        );
     },
     [startDate],
   );
