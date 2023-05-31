@@ -7,13 +7,23 @@ spec:
   selector:
     matchLabels:
       app: carrectlyweb
-  replicas: 3
+  replicas: 2
   minReadySeconds: 15
   template:
     metadata:
       labels:
-         app: carrectlyweb
+        app: carrectlyweb
+        env: test
+        tier: carrectly-website
+        owner: Pavlo
     spec:
       containers:
         - name: carrectlyweb
           image: "<imageTag>"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 1
+      restartPolicy: Always
