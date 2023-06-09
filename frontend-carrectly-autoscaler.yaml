@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: carrectlyweb-autoscaling 
@@ -8,6 +8,18 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: carrectlyweb
-  minReplicas: 3
-  maxReplicas: 6
-  targetCPUUtilizationPercentage: 75
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu 
+        target:
+          type: Utilization
+          averageUtilization: 90
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 90

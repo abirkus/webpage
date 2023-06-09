@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: carrectlyweb
-  replicas: 3
+  replicas: 2
   minReadySeconds: 12
   template:
     metadata:
@@ -17,10 +17,10 @@ spec:
       containers:
         - name: carrectlyweb
           image: "<imageTag>"
-          #livenessProbe:
-           # httpGet:
-            #  path: /
-            #  port: 3000
-            #initialDelaySeconds: 20
-            #periodSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 400
+            periodSeconds: 300
       restartPolicy: Always
