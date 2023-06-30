@@ -21,7 +21,7 @@ pipeline {
                             if (lastSuccessfulBuild) {
                                 sh "sed -i.bak 's|<imageVersion>|pavlohortovenko20/carrectlyweb:${lastSuccessfulBuild.getNumber()}|' ./Dockerfile"
                             } else {
-                                sh "sed -i.bak 's|<imageVersion>|node:latest|' ./Dockerfile"
+                                sh "sed -i.bak 's|<imageVersion>|node:16|' ./Dockerfile"
                             }
                          }
                      }
