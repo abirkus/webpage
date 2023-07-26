@@ -147,7 +147,7 @@ const Protection = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         try {
             setLoading(true);
-            const requestData = {
+            await axios.post('/api/newServiceOrder', {
                 serviceCategory: serviceCategoryName,
                 customerInformation: {
                     name: data.name,
@@ -155,11 +155,11 @@ const Protection = () => {
                     email: data.email
                 },
                 orderHash: uuidv4()
-            };
-            await axios.post('/api/newServiceOrder', requestData);
+            });
             closeCallbackPopup();
             setLoading(false);
         } catch (err) {
+            console.log(err)
             setLoading(false);
         }
     };
