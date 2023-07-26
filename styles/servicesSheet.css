@@ -1,0 +1,8 @@
+.eapps-widget-toolbar {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+#yelp-reviews a[rel="noreferrer"] {
+    display: none !important;
+}
