@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { Grid, Box, Button, Accordion, AccordionSummary, AccordionDetails, Typography, Container, ImageList, ImageListItem, Link, List, ListItem } from '@mui/material';
+import { Grid, Box, Button, Accordion, AccordionSummary, AccordionDetails, Typography, Container, ImageList, ImageListItem, List, ListItem } from '@mui/material';
 import BuildIcon from '@mui/icons-material/Build';
 import TouchAppOutlinedIcon from '@mui/icons-material/TouchAppOutlined';
 import serviceArray from '../../data/services.json';
